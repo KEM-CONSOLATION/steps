@@ -31,7 +31,8 @@ function App() {
   return (
     <>
       <button className="close" onClick={() => setIsOpen((is) => !is)}>
-        &times;
+        {/* &times; */}
+        {isOpen ? "Close" : "Open"}
       </button>
       {isOpen && (
         <div className="steps">
@@ -48,13 +49,21 @@ function App() {
           <StepMessage step={step}>{messages[step - 1]}</StepMessage>
 
           <div className="buttons">
-            <Button bgColor="#7950f2" textColor="#fff" onClick={handlePrevious}>
-              <span>⏮</span>Previous
-            </Button>
+            {step > 1 && (
+              <Button
+                bgColor="#7950f2"
+                textColor="#fff"
+                onClick={handlePrevious}
+              >
+                <span>⏮</span>Previous
+              </Button>
+            )}
 
-            <Button bgColor="#7950f2" textColor="#fff" onClick={handleNext}>
-              Next<span>⏭</span>
-            </Button>
+            {step <= 2 && (
+              <Button bgColor="#7950f2" textColor="#fff" onClick={handleNext}>
+                Next<span>⏭</span>
+              </Button>
+            )}
           </div>
         </div>
       )}
